@@ -1,5 +1,5 @@
 import { fetchCoins } from "api";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -13,6 +13,7 @@ const Coins = () => {
       <Helmet>
         <title>코인</title>
       </Helmet>
+
       <Header>
         <Title>Coins</Title>
       </Header>
