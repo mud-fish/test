@@ -12,7 +12,7 @@ import {
 import Price from "./Price";
 import Chart from "./Chart";
 import { useQuery } from "react-query";
-import { fetchCoinInfo } from "api";
+import { fetchCoinInfo, fetchCoinTickers } from "api";
 import { Helmet } from "react-helmet";
 
 const Coin = () => {
@@ -30,7 +30,7 @@ const Coin = () => {
   );
 
   const { isLoading: tickersLoading, data: tickersData } =
-    useQuery<ITickersData>(["tickers", coinId], () => fetchCoinInfo(coinId));
+    useQuery<ITickersData>(["tickers", coinId], () => fetchCoinTickers(coinId));
 
   const loading = infoLoading || tickersLoading;
 
