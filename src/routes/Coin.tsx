@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import {
   useRouteMatch,
@@ -7,6 +7,7 @@ import {
   Switch,
   useLocation,
   useParams,
+  useHistory,
 } from "react-router-dom";
 import Price from "./Price";
 import Chart from "./Chart";
@@ -27,10 +28,17 @@ const Coin = () => {
       refetchInterval: 5000,
     }
   );
+
   const { isLoading: tickersLoading, data: tickersData } =
     useQuery<ITickersData>(["tickers", coinId], () => fetchCoinInfo(coinId));
 
   const loading = infoLoading || tickersLoading;
+
+  const history = useHistory();
+
+  const onClickGoBackBtn = () => {
+    history.push("/");
+  };
 
   return (
     <Container>
@@ -40,6 +48,7 @@ const Coin = () => {
         </title>
       </Helmet>
       <Header>
+        <GoBackBtn onClick={onClickGoBackBtn}>🔙</GoBackBtn>
         <Title>
           {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
         </Title>
@@ -96,6 +105,22 @@ const Coin = () => {
     </Container>
   );
 };
+
+const GoBackBtn = styled.div`
+  padding: 10px;
+  font-size: 40px;
+  user-select: none;
+  cursor: pointer;
+  transition: all 0.3s;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:active {
+    opacity: 0.6;
+  }
+`;
 
 const Container = styled.div`
   max-width: 1080px;
