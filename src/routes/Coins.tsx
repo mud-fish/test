@@ -4,6 +4,41 @@ import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+const Coins = () => {
+  const { isLoading, data } = useQuery<ICoin[]>("allCoins", fetchCoins);
+
+  return (
+    <Container>
+      <Header>
+        <Title>Coins</Title>
+      </Header>
+      {isLoading ? (
+        <Loader>Loading...</Loader>
+      ) : (
+        <CoinsList>
+          {data?.slice(0, 100).map((coin) => (
+            <Coin key={coin.id}>
+              <Link
+                to={{
+                  pathname: `/${coin.id}`,
+                  state: { name: coin.name },
+                }}
+              >
+                <img
+                  src={`https://cryptocurrencyliveprices.com/img/${coin.id}.png`}
+                  alt=""
+                />
+                {coin.name}
+                &rarr;
+              </Link>
+            </Coin>
+          ))}
+        </CoinsList>
+      )}
+    </Container>
+  );
+};
+
 const Container = styled.div`
   max-width: 1080px;
   margin: 0 auto;
@@ -66,40 +101,5 @@ interface ICoin {
   is_active: boolean;
   type: string;
 }
-
-const Coins = () => {
-  const { isLoading, data } = useQuery<ICoin[]>("allCoins", fetchCoins);
-
-  return (
-    <Container>
-      <Header>
-        <Title>Coins</Title>
-      </Header>
-      {isLoading ? (
-        <Loader>Loading...</Loader>
-      ) : (
-        <CoinsList>
-          {data?.slice(0, 100).map((coin) => (
-            <Coin key={coin.id}>
-              <Link
-                to={{
-                  pathname: `/${coin.id}`,
-                  state: { name: coin.name },
-                }}
-              >
-                <img
-                  src={`https://cryptocurrencyliveprices.com/img/${coin.id}.png`}
-                  alt=""
-                />
-                {coin.name}
-                &rarr;
-              </Link>
-            </Coin>
-          ))}
-        </CoinsList>
-      )}
-    </Container>
-  );
-};
 
 export default Coins;
