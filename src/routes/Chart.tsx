@@ -18,15 +18,15 @@ interface IHistorical {
 }
 
 const Chart = ({ coinId }: ChartProps) => {
-  const { isLoading, data } = useQuery<IHistorical[]>(
-    ["ohlcv", coinId],
+  const { isLoading, data: historicalData } = useQuery<IHistorical[]>(
+    ["ohlcv2", coinId],
     () => fetchCoinHistory(coinId),
     {
       refetchInterval: 5000,
     }
   );
 
-  if (!data) return null;
+  if (!historicalData) return null;
 
   return (
     <div>
@@ -34,11 +34,23 @@ const Chart = ({ coinId }: ChartProps) => {
         "Loading Chart..."
       ) : (
         <ApexChart
-          type="line"
+          type="candlestick"
           series={[
             {
-              name: "Price",
-              data: data?.map((price) => price.close) || [],
+              data: [
+                {
+                  x: new Date(1538778600000),
+                  y: [6629.81, 6650.5, 6623.04, 6633.33],
+                },
+                {
+                  x: new Date(1538780400000),
+                  y: [6632.01, 6643.59, 6620, 6630.11],
+                },
+                {
+                  x: new Date(1538782200000),
+                  y: [6630.71, 6648.95, 6623.34, 6635.65],
+                },
+              ],
             },
           ]}
           options={{
@@ -46,36 +58,28 @@ const Chart = ({ coinId }: ChartProps) => {
               mode: "dark",
             },
             chart: {
-              height: 300,
+              type: "candlestick",
+              height: 350,
               width: 500,
               toolbar: {
                 show: false,
               },
               background: "transparent",
             },
-            grid: { show: false },
             stroke: {
               curve: "smooth",
-              width: 4,
+              width: 2,
             },
             yaxis: {
               show: false,
             },
-            xaxis: {
-              axisBorder: { show: false },
-              axisTicks: { show: false },
-              labels: { show: false },
-              type: "datetime",
-              categories: data?.map((price) => price.time_close),
-            },
-            fill: {
-              type: "gradient",
-              gradient: { gradientToColors: ["#0be881"], stops: [0, 100] },
-            },
-            colors: ["#0fbcf9"],
-            tooltip: {
-              y: {
-                formatter: (value) => `$${value.toFixed(2)}`,
+
+            plotOptions: {
+              candlestick: {
+                colors: {
+                  upward: "#3C90EB",
+                  downward: "#DF7D46",
+                },
               },
             },
           }}

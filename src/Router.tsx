@@ -5,7 +5,7 @@ import Coins from "routes/Coins";
 
 const Router = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="coin">
       <Switch>
         <Route path="/:coinId">
           <Coin />
