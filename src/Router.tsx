@@ -7,11 +7,11 @@ const Router = () => {
   return (
     <BrowserRouter basename="coin">
       <Switch>
-        <Route path="/:coinId">
-          <Coin />
-        </Route>
-        <Route path="/">
+        <Route exact path="/">
           <Coins />
+        </Route>
+        <Route exact path="/:coinId">
+          <Coin />
         </Route>
       </Switch>
     </BrowserRouter>
