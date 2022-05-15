@@ -1,5 +1,7 @@
 import React from "react";
 import { BrowserRouter, Link, Switch, Route } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { isDarkAtom } from "./atoms";
 import Coin from "routes/Coin";
 import Coins from "routes/Coins";
 

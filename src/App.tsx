@@ -1,15 +1,20 @@
 import Router from "./Router";
 import GlobalStyle from "./GlobalStyle";
 import { ReactQueryDevtools } from "react-query/devtools";
-import ThemeToggleButton from "ThemeToggleButton";
+import { useRecoilValue } from "recoil";
+import { isDarkAtom } from "./atoms";
+import { ThemeProvider } from "styled-components";
+import { darkTheme, lightTheme } from "theme";
 
 function App() {
+  const isDark = useRecoilValue(isDarkAtom);
   return (
     <>
-      <GlobalStyle />
-      <ThemeToggleButton />
-      <Router />
-      <ReactQueryDevtools initialIsOpen={true} />
+      <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
+        <GlobalStyle />
+        <Router />
+        <ReactQueryDevtools initialIsOpen={true} />
+      </ThemeProvider>
     </>
   );
 }
