@@ -1,5 +1,7 @@
 const Home = () => {
-  return <div>하이</div>;
+  return (
+    <div style={{ backgroundColor: "whitesmoke", height: "200vh" }}>하이</div>
+  );
 };
 
 export default Home;

@@ -134,9 +134,7 @@ const Reset = css`
 
 const GlobalStyle = createGlobalStyle`
   ${Reset}
-
-
-  
+ 
 `;
 
 export default GlobalStyle;
