@@ -58,6 +58,7 @@ export const Box = styled(motion.div)<{ bgphoto: string }>`
   background-position: center center;
   height: 90%;
   font-size: 64px;
+  cursor: pointer;
 
   &:first-child {
     transform-origin: left;
@@ -79,4 +80,47 @@ export const Info = styled(motion.div)`
     text-align: center;
     font-size: 18px;
   }
+`;
+
+export const BigCover = styled.div`
+  width: 100%;
+  background-size: cover;
+  background-position: center center;
+  height: 40vh;
+`;
+
+export const BigTitle = styled.h3`
+  color: ${({ theme }) => theme.white.lighter};
+  padding: 0 30px;
+  font-size: 50px;
+  position: relative;
+  top: -60px;
+`;
+
+export const BigMovie = styled(motion.div)`
+  position: fixed;
+  width: 40vw;
+  height: 80vh;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  border-radius: 15px;
+  overflow: hidden;
+  background-color: ${({ theme }) => theme.black.lighter};
+`;
+
+export const BigOverview = styled.p`
+  color: ${({ theme }) => theme.white.lighter};
+  padding: 20px;
+`;
+
+export const Overlay = styled(motion.div)`
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #0009;
+  opacity: 0;
 `;

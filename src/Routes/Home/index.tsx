@@ -6,6 +6,8 @@ import * as S from "./style";
 
 import { makeImagePath } from "utils";
 import { useState } from "react";
+import { useMatch, useNavigate } from "react-router-dom";
+import Modal from "./Modal";
 
 const offset = 6;
 
@@ -17,6 +19,10 @@ const Home = () => {
 
   const [index, setIndex] = useState(0);
   const [leaving, setLeaving] = useState(false);
+
+  const navigate = useNavigate();
+  const bigMovieMatch = useMatch("/movies/:movieId");
+
   const increaseIndex = () => {
     if (data) {
       if (leaving) {
@@ -28,8 +34,13 @@ const Home = () => {
       setIndex((p) => (p === maxIndex ? 0 : p + 1));
     }
   };
+
   const toggleLeaving = () => {
     setLeaving((p) => !p);
+  };
+
+  const onBoxClicked = (movieId: number) => () => {
+    navigate(`/movies/${movieId}`);
   };
 
   return (
@@ -60,6 +71,8 @@ const Home = () => {
                   .slice(offset * index, offset * index + offset)
                   .map((movie) => (
                     <S.Box
+                      layoutId={movie.id + ""}
+                      onClick={onBoxClicked(movie.id)}
                       variants={boxVariants}
                       transition={{ type: "tween" }}
                       initial="normal"
@@ -75,6 +88,9 @@ const Home = () => {
               </S.Row>
             </AnimatePresence>
           </S.Slider>
+          <AnimatePresence>
+            <Modal data={data} />
+          </AnimatePresence>
         </>
       )}
     </S.Wrapper>

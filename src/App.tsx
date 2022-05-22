@@ -1,4 +1,4 @@
-import { ReactQueryDevtools } from "react-query/devtools";
+// import { ReactQueryDevtools } from "react-query/devtools";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 
 /* Routes */
@@ -16,7 +16,7 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="*" element={<Home />} />
           <Route path="/tv" element={<Tv />} />
           <Route path="/search" element={<Search />} />
         </Routes>
