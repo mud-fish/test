@@ -2,12 +2,11 @@ import { motion } from "framer-motion";
 import { mixin } from "./../../styles/util";
 import styled from "styled-components";
 
-export const Nav = styled.nav`
+export const Nav = styled(motion.nav)`
   ${mixin.flexbox({ jc: "space-between", ai: "center" })}
   position: fixed;
   width: 100%;
   top: 0;
-  background-color: black;
   font-size: 14px;
   padding: 20px 60px;
   color: white;

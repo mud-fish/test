@@ -1,12 +1,13 @@
-import { motion } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
 import * as S from "./style";
 
 interface Props {
   onClick: () => void;
   searchOpen: boolean;
+  inputAnimation: any;
 }
 
-const Search = ({ onClick, searchOpen }: Props) => {
+const Search = ({ onClick, searchOpen, inputAnimation }: Props) => {
   return (
     <S.Search>
       <motion.svg
@@ -24,7 +25,8 @@ const Search = ({ onClick, searchOpen }: Props) => {
         ></path>
       </motion.svg>
       <S.Input
-        animate={{ scaleX: searchOpen ? 1 : 0 }}
+        initial={{ scaleX: 0 }}
+        animate={inputAnimation}
         placeholder="Search for movie or tv show..."
       />
     </S.Search>
