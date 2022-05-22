@@ -135,6 +135,10 @@ const Reset = css`
 const GlobalStyle = createGlobalStyle`
   ${Reset}
  
+   body {
+     color: ${(props) => props.theme.white.darker};
+     background-color: black;
+   }
 `;
 
 export default GlobalStyle;
