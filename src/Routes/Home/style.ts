@@ -14,12 +14,12 @@ export const Loader = styled.div`
   text-align: center;
 `;
 
-export const Banner = styled.div<{ bgPhoto: string }>`
+export const Banner = styled.div<{ bgphoto: string }>`
   ${mixin.flexbox({ dir: "column", ai: "" })}
   height: 100vh;
   padding: 60px;
   background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)),
-    url(${(props) => props.bgPhoto});
+    url(${(props) => props.bgphoto});
   background-size: cover;
 `;
 
@@ -51,13 +51,12 @@ export const Row = styled(motion.div)`
   padding: 0 20px;
 `;
 
-export const Box = styled(motion.div)<{ bgPhoto: string }>`
+export const Box = styled(motion.div)<{ bgphoto: string }>`
   background-color: white;
-  background-image: url(${(props) => props.bgPhoto});
+  background-image: url(${(props) => props.bgphoto});
   background-size: cover;
   background-position: center center;
   height: 90%;
-  color: red;
   font-size: 64px;
 
   &:first-child {
@@ -65,5 +64,19 @@ export const Box = styled(motion.div)<{ bgPhoto: string }>`
   }
   &:last-child {
     transform-origin: right;
+  }
+`;
+
+export const Info = styled(motion.div)`
+  position: absolute;
+  padding: 10px;
+  background-color: ${(props) => props.theme.black.lighter};
+  opacity: 0;
+  width: 100%;
+  bottom: 0;
+
+  h4 {
+    text-align: center;
+    font-size: 18px;
   }
 `;

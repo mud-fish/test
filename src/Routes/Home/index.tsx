@@ -40,7 +40,7 @@ const Home = () => {
         <>
           <S.Banner
             onClick={increaseIndex}
-            bgPhoto={makeImagePath(data?.results[0].backdrop_path || "")}
+            bgphoto={makeImagePath(data?.results[0].backdrop_path || "")}
           >
             <S.Title>{data?.results[0].title}</S.Title>
             <S.Overview>{data?.results[0].overview}</S.Overview>
@@ -65,10 +65,14 @@ const Home = () => {
                       initial="normal"
                       whileHover="hover"
                       key={movie.id}
-                      bgPhoto={makeImagePath(movie.backdrop_path || "", "w500")}
-                    ></S.Box>
+                      bgphoto={makeImagePath(movie.backdrop_path || "", "w500")}
+                    >
+                      <S.Info variants={infoVariants}>
+                        <h4>{movie.title}</h4>
+                      </S.Info>
+                    </S.Box>
                   ))}
-              </S.Row>{" "}
+              </S.Row>
             </AnimatePresence>
           </S.Slider>
         </>
@@ -97,6 +101,17 @@ const boxVariants = {
   hover: {
     y: -100,
     scale: 1.3,
+    transition: {
+      delay: 0.4,
+      duration: 0.3,
+      type: "tween",
+    },
+  },
+};
+
+const infoVariants = {
+  hover: {
+    opacity: 1,
     transition: {
       delay: 0.4,
       duration: 0.3,
