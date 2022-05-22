@@ -1,5 +1,5 @@
 import { ReactQueryDevtools } from "react-query/devtools";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 
 /* Routes */
 import Home from "Routes/Home";
