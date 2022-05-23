@@ -1,22 +1,21 @@
 import {
-  getMovies,
+  getPopularTvs,
   IGetMoviesResult,
-  getTopRatedMovies,
-  getUpcomingMovies,
+  getOnTheAirTvs,
+  getTopRatedTvs,
 } from "api";
 import { useQuery } from "react-query";
 import { AnimatePresence } from "framer-motion";
 
-import * as S from "./style";
-
+import * as S from "../Home/style";
 import { makeImagePath } from "utils";
-import Modal from "./Modal";
-import Slider from "./Slider";
+import Modal from "../Home/Modal";
+import Slider from "../Home/Slider";
 
-const Home = () => {
+const Tv = () => {
   const { data, isLoading } = useQuery<IGetMoviesResult>(
-    ["movies", "nowPlaying"],
-    getMovies
+    ["tv", "nowPlaying"],
+    getPopularTvs
   );
 
   return (
@@ -33,23 +32,23 @@ const Home = () => {
           </S.Banner>
           <Slider
             offset={6}
-            fetcher={getMovies}
-            queryKey="nowPlaying"
-            genre="movies"
+            fetcher={getPopularTvs}
+            queryKey="popularTvs"
+            genre="tv"
           />
 
           <Slider
             offset={6}
-            fetcher={getTopRatedMovies}
-            queryKey="topRatedMovies"
-            genre="movies"
+            fetcher={getTopRatedTvs}
+            queryKey="topRatedTvs"
+            genre="tv"
           />
 
           <Slider
             offset={6}
-            fetcher={getUpcomingMovies}
-            queryKey="upcomingMovies"
-            genre="movies"
+            fetcher={getOnTheAirTvs}
+            queryKey="onTheAirTvs"
+            genre="tv"
           />
 
           <AnimatePresence>
@@ -61,4 +60,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Tv;

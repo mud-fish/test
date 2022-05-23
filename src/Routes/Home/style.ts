@@ -5,7 +5,7 @@ import { mixin } from "./../../styles/util";
 
 export const Wrapper = styled.div`
   background-color: #000;
-  height: 20vh;
+  height: 30vh;
 `;
 
 export const Loader = styled.div`
@@ -36,9 +36,8 @@ export const Overview = styled.p`
 export const Slider = styled.div`
   ${mixin.flexbox({ jc: "flex-end" })}
   position: relative;
-  top: -300px;
-  height: 600px;
-  overflow-x: hidden;
+  top: -250px;
+  height: 100%;
 `;
 
 export const Row = styled(motion.div)`
@@ -47,8 +46,8 @@ export const Row = styled(motion.div)`
   grid-template-columns: repeat(6, 1fr);
   gap: 5px;
   width: 100%;
-  height: 300px;
-  padding: 0 20px;
+  height: 200px;
+  padding: 0 40px;
 `;
 
 export const Box = styled(motion.div)<{ bgphoto: string }>`
@@ -89,12 +88,23 @@ export const BigCover = styled.div`
   height: 40vh;
 `;
 
+export const BigCoverReverse = styled.div`
+  width: 100%;
+  background-size: cover;
+  background-position: center center;
+  height: 40vh;
+  position: absolute;
+  bottom: 0;
+  transform: rotate(180deg);
+  opacity: 0.5;
+`;
+
 export const BigTitle = styled.h3`
   color: ${({ theme }) => theme.white.lighter};
   padding: 0 30px;
-  font-size: 50px;
+  font-size: 40px;
   position: relative;
-  top: -60px;
+  top: -120px;
 `;
 
 export const BigMovie = styled(motion.div)`
@@ -113,6 +123,7 @@ export const BigMovie = styled(motion.div)`
 
 export const BigOverview = styled.p`
   color: ${({ theme }) => theme.white.lighter};
+  font-size: 20px;
   padding: 20px;
 `;
 
@@ -123,4 +134,23 @@ export const Overlay = styled(motion.div)`
   height: 100%;
   background-color: #0009;
   opacity: 0;
+`;
+
+export const NextButton = styled.button`
+  position: absolute;
+  ${mixin.flexbox({ ai: "center" })}
+  border: 0;
+  height: 50%;
+  padding: 10px;
+  margin-right: 5px;
+  border-radius: 5px;
+  z-index: 1;
+
+  &:hover {
+    opacity: 0.5;
+  }
+
+  &:active {
+    opacity: 0.3;
+  }
 `;

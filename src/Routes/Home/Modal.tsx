@@ -14,13 +14,15 @@ const Modal = ({ data }: Props) => {
     navigate(-1);
   };
 
-  const bigMovieMatch = useMatch("/movies/:movieId");
+  const bigMovieMatch = useMatch(`/:genre/:movieId`);
+
   const clickedMovie =
     bigMovieMatch?.params.movieId &&
     data?.results.find(
       (movie) => String(movie.id) === bigMovieMatch.params.movieId
     );
-  console.log("[clickedMovie]", clickedMovie);
+
+  console.log(clickedMovie);
 
   return (
     <>
@@ -43,13 +45,24 @@ const Modal = ({ data }: Props) => {
                     )})`,
                   }}
                 />
-                <S.BigTitle>{clickedMovie.title}</S.BigTitle>
+                <S.BigTitle>
+                  {clickedMovie.title || clickedMovie.name}
+                </S.BigTitle>
                 <S.BigOverview>{clickedMovie.overview}</S.BigOverview>
+                <S.BigCoverReverse
+                  style={{
+                    backgroundImage: `linear-gradient(to top, black, transparent), url(${makeImagePath(
+                      clickedMovie.backdrop_path
+                    )})`,
+                  }}
+                />
               </>
             )}
           </S.BigMovie>
         </>
-      ) : null}
+      ) : (
+        <h3>정보가 없습니다</h3>
+      )}
     </>
   );
 };

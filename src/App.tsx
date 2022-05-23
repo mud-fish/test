@@ -1,4 +1,4 @@
-// import { ReactQueryDevtools } from "react-query/devtools";
+import { ReactQueryDevtools } from "react-query/devtools";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 
 /* Routes */
@@ -16,12 +16,13 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="*" element={<Home />} />
-          <Route path="/tv" element={<Tv />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/movies/*" element={<Home />} />
+          <Route path="/tv/*" element={<Tv />} />
           <Route path="/search" element={<Search />} />
         </Routes>
       </BrowserRouter>
-      {/* <ReactQueryDevtools initialIsOpen={true} /> */}
+      <ReactQueryDevtools initialIsOpen={true} />
     </>
   );
 }

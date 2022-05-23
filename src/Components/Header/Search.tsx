@@ -1,5 +1,7 @@
 import { motion, useAnimation } from "framer-motion";
 import * as S from "./style";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   onClick: () => void;
@@ -7,9 +9,19 @@ interface Props {
   inputAnimation: any;
 }
 
+interface IForm {
+  keyword: string;
+}
+
 const Search = ({ onClick, searchOpen, inputAnimation }: Props) => {
+  const { register, handleSubmit } = useForm<IForm>();
+  const onValid = (data: IForm) => {
+    navigate(`search?keyword=${data.keyword}`);
+  };
+  const navigate = useNavigate();
+
   return (
-    <S.Search>
+    <S.Search onSubmit={handleSubmit(onValid)}>
       <motion.svg
         onClick={onClick}
         animate={{ x: searchOpen ? -200 : 10 }}
@@ -25,6 +37,7 @@ const Search = ({ onClick, searchOpen, inputAnimation }: Props) => {
         ></path>
       </motion.svg>
       <S.Input
+        {...register("keyword", { required: true, minLength: 2 })}
         initial={{ scaleX: 0 }}
         animate={inputAnimation}
         placeholder="Search for movie or tv show..."

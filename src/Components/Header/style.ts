@@ -55,7 +55,7 @@ export const Circle = styled(motion.span)`
   margin: 0 auto;
 `;
 
-export const Search = styled.span`
+export const Search = styled.form`
   position: relative;
   ${mixin.flexbox({ jc: "" })};
   color: white;
